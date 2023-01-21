@@ -60,7 +60,7 @@ function createRequestObject(title, amount) {
     version: "1.0",
   };
   let biz = {
-    notify_url: "https://node-api-muxu.onrender.com/api/payment",
+    notify_url: "https://node-api-muxu.onrender.com/",
     trade_type: "InApp",
     appid: config.merchantAppId,
     merch_code: config.merchantCode,

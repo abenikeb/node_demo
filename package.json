@@ -1,12 +1,9 @@
 {
   "name": "et-demo-giftcard-server",
   "version": "1.0.0",
-  "engines": {
-    "node": "14.x"
-  },
   "scripts": {
     "server": "node app.js",
-    "start": "node app.js",
+    "start": "npm start app.js",
     "seed": "node seed.js",
     "test": "jest --watchAll --verbose"
   },

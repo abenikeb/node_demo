@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "server": "node app.js",
-    "start": "npm start app.js",
+    "start": "node app.js",
     "seed": "node seed.js",
     "test": "jest --watchAll --verbose"
   },

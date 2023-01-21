@@ -31,7 +31,7 @@ app.post("/create/order", function (req, res) {
 });
 
 // start server
-let serverPort = 8081;
+let serverPort = process.env.PORT | 8000;
 var app = app.listen(serverPort, function () {
   console.log("server started, port:" + serverPort);
 });

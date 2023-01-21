@@ -30,6 +30,10 @@ app.post("/create/order", function (req, res) {
   createOrder.createOrder(req, res);
 });
 
+app.post("/api/payment", (req, res) => {
+  console.log("Request Body Notify Url");
+  console.log({ REQ_BODY: req.body });
+});
 // start server
 let serverPort = process.env.PORT | 8000;
 var app = app.listen(serverPort, function () {

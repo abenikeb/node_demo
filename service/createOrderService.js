@@ -60,7 +60,7 @@ function createRequestObject(title, amount) {
     version: "1.0",
   };
   let biz = {
-    notify_url: "https://www.google.com",
+    notify_url: "https://node-api-muxu.onrender.com/api/payment",
     trade_type: "InApp",
     appid: config.merchantAppId,
     merch_code: config.merchantCode,
@@ -72,7 +72,7 @@ function createRequestObject(title, amount) {
     payee_identifier: "220311",
     payee_identifier_type: "04",
     payee_type: "5000",
-    redirect_url: "https://www.bing.com",
+    redirect_url: "https://node-api-muxu.onrender.com/api/payment",
   };
   req.biz_content = biz;
   req.sign = tools.signRequestObject(req);

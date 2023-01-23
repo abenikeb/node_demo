@@ -33,7 +33,7 @@ app.post("/create/order", function (req, res) {
 app.post("/", (req, res) => {
   console.log("Request Body Notify Url");
   console.log({ REQ_BODY: req.body });
-  return req.body
+  res.status(201).json({body: req.body})
 });
 // start server
 let serverPort = process.env.PORT | 8000;

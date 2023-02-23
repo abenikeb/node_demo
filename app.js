@@ -31,7 +31,13 @@ app.post("/create/order", function (req, res) {
 });
 
 app.post("/api/v1/notify", (req, res) => {
-  console.log("New Notify Response Body Hit");
+  console.log("New Notify Response Body Hit POST");
+  console.log({ REQ_BODY: req.body });
+  res.status(201).json({ body: req.body });
+});
+
+app.put("/api/v1/notify", (req, res) => {
+  console.log("New Notify Response Body Hit PUT");
   console.log({ REQ_BODY: req.body });
   res.status(201).json({ body: req.body });
 });

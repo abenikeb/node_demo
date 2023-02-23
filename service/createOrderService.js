@@ -18,7 +18,7 @@ exports.createOrder = async (req, res) => {
   console.log(createOrderResult);
   let prepayId = createOrderResult.biz_content.prepay_id;
   let rawRequest = createRawRequest(prepayId);
-  // console.log("RAW_REQ: ", rawRequest);
+  console.log("RAW_REQ_Ebsa: ", rawRequest);
   res.send(rawRequest);
 };
 
@@ -60,7 +60,7 @@ function createRequestObject(title, amount) {
     version: "1.0",
   };
   let biz = {
-    notify_url: "https://node-api-muxu.onrender.com/",
+    notify_url: "https://node-api-muxu.onrender.com/api/v1/notify",
     trade_type: "InApp",
     appid: config.merchantAppId,
     merch_code: config.merchantCode,

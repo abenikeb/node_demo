@@ -22,17 +22,22 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/auth/token", function (req, res) {
-  authToken(req, res);
+app.post("/apply/h5token", function (req, res) {
+  authToken.authToken(req, res);
 });
 
 app.post("/create/order", function (req, res) {
   createOrder.createOrder(req, res);
 });
 
+//for testing
+// app.get("/api/listen", (req, res) => {
+//   res.status(200).json({ reqRes: "Send the data" });
+// });
+
 app.post("/api/v1/notify", (req, res) => {
-  console.log("New Notify Response Body Hit POST");
-  console.log({ REQ_BODY: req.body });
+  console.log("Notify Response Hits HERE!");
+  // console.log({ REQ_BODY: req });
   res.status(201).json({ body: req.body });
 });
 

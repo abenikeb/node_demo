@@ -60,6 +60,7 @@ function createRequestObject(title, amount) {
     version: "1.0",
   };
   let biz = {
+    // notify_url: "https://node-api-muxu.onrender.com/api/v1/notify",
     notify_url: "https://node-api-muxu.onrender.com/api/v1/notify",
     trade_type: "InApp",
     appid: config.merchantAppId,
@@ -72,7 +73,7 @@ function createRequestObject(title, amount) {
     payee_identifier: "220311",
     payee_identifier_type: "04",
     payee_type: "5000",
-    redirect_url: "https://node-api-muxu.onrender.com/api/payment",
+    redirect_url: "https://216.24.57.253/api/v1/notify",
   };
   req.biz_content = biz;
   req.sign = tools.signRequestObject(req);

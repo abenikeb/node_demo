@@ -31,9 +31,9 @@ exports.requestAuthToken = async (fabricToken, appToken) => {
         "X-APP-Key": config.fabricAppId,
         Authorization: fabricToken,
       },
-      rejectUnauthorized: true, //add when working with https sites
-      requestCert: true, //add when working with https sites
-      agent: true, //add when working with https sites
+      rejectUnauthorized: false, //add when working with https sites
+      requestCert: false, //add when working with https sites
+      agent: false, //add when working with https sites
       body: JSON.stringify(reqObject),
     };
     request(options, function (error, response) {

@@ -31,9 +31,9 @@ exports.requestAuthToken = async (fabricToken, appToken) => {
         "X-APP-Key": config.fabricAppId,
         Authorization: fabricToken,
       },
-      rejectUnauthorized: false, //add when working with https sites
-      requestCert: false, //add when working with https sites
-      agent: false, //add when working with https sites
+      // rejectUnauthorized: false, //add when working with https sites
+      // requestCert: false, //add when working with https sites
+      // agent: false, //add when working with https sites
       body: JSON.stringify(reqObject),
     };
     request(options, function (error, response) {
@@ -47,8 +47,8 @@ exports.requestAuthToken = async (fabricToken, appToken) => {
 function createRequestObject(appToken) {
   let req = {
     timestamp: tools.createTimeStamp(),
-    nonce_str: tools.createNonceStr(),
     method: "payment.authtoken",
+    nonce_str: tools.createNonceStr(),
     version: "1.0",
   };
   let biz = {

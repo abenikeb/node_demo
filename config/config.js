@@ -1,4 +1,4 @@
-// Guzo Go Credentials
+// Set your own secrates here!
 
 module.exports = {
   baseUrl: "https://196.188.120.3:38443/apiaccess/payment/gateway",

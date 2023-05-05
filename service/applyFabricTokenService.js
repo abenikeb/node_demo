@@ -2,6 +2,7 @@ const https = require("http");
 const config = require("../config/config");
 var request = require("request");
 
+// Apply fabric token
 function applyFabricToken() {
   return new Promise((resolve, reject) => {
     var options = {

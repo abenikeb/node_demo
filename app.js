@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   res.header("Allow", "GET, POST, PATCH, OPTIONS, PUT, DELETE");
   next();
 });
-createMandetOrderService
+
 app.post("/apply/h5token", function (req, res) {
   authToken.authToken(req, res);
 });

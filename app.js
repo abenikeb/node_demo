@@ -4,6 +4,7 @@ var app = express();
 const { signString } = require("./utils/tools");
 const authToken = require("./service/authTokenService");
 const createOrder = require("./service/createOrderService");
+const createMandetOrder = require("./service/createMandetOrderService")
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -21,13 +22,17 @@ app.use((req, res, next) => {
   res.header("Allow", "GET, POST, PATCH, OPTIONS, PUT, DELETE");
   next();
 });
-
+createMandetOrderService
 app.post("/apply/h5token", function (req, res) {
   authToken.authToken(req, res);
 });
 
 app.post("/create/order", function (req, res) {
   createOrder.createOrder(req, res);
+});
+
+app.post("/create/mandetOrder", function (req, res) {
+  createMandetOrder.createMandetOrder(req, res);
 });
 
 //for testing

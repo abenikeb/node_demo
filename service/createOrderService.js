@@ -1,5 +1,6 @@
 const applyFabricToken = require("./applyFabricTokenService");
 const tools = require("../utils/tools");
+const axios = require("axios");
 const config = require("../config/config");
 const https = require("http");
 var request = require("request");
@@ -20,39 +21,64 @@ exports.createOrder = async (req, res) => {
   console.log(createOrderResult);
   let prepayId = createOrderResult.biz_content.prepay_id;
   let rawRequest = createRawRequest(prepayId);
-  console.log("RAW_REQ_Ebsa: ", rawRequest);
+  console.log("RAW_REQ: ", rawRequest);
   res.send(rawRequest);
 };
 
 exports.requestCreateOrder = async (fabricToken, title, amount) => {
-  return new Promise((resolve) => {
-    let reqObject = createRequestObject(title, amount);
-
+  try {
+    const reqObject = createRequestObject(title, amount);
     console.log(reqObject);
 
-    var options = {
-      method: "POST",
-      url: config.baseUrl + "/payment/v1/merchant/preOrder",
-      headers: {
-        "Content-Type": "application/json",
-        "X-APP-Key": config.fabricAppId,
-        Authorization: fabricToken,
-      },
-      rejectUnauthorized: false, //add when working with https sites
-      requestCert: false, //add when working with https sites
-      agent: false, //add when working with https sites
-      body: JSON.stringify(reqObject),
-    };
+    const response = await axios.post(
+      `${config.baseUrl}/payment/v1/merchant/preOrder`,
+      reqObject,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "X-APP-Key": config.fabricAppId,
+          Authorization: fabricToken,
+        },
+      }
+    );
 
-    request(options, function (error, response) {
-      console.log(error);
-      if (error) throw new Error(error);
-      console.log(response.body);
-      let result = JSON.parse(response.body);
-      resolve(result);
-    });
-  });
+    // Assuming your response is a JSON object, no need to parse it
+    return response.data;
+  } catch (error) {
+    console.error("Error while requesting create order:", error.message);
+    throw error; // Propagate the error for handling at a higher level
+  }
 };
+
+// exports.requestCreateOrder = async (fabricToken, title, amount) => {
+//   return new Promise((resolve) => {
+//     let reqObject = createRequestObject(title, amount);
+
+//     console.log(reqObject);
+
+//     var options = {
+//       method: "POST",
+//       url: config.baseUrl + "/payment/v1/merchant/preOrder",
+//       headers: {
+//         "Content-Type": "application/json",
+//         "X-APP-Key": config.fabricAppId,
+//         Authorization: fabricToken,
+//       },
+//       rejectUnauthorized: false, //add when working with https sites
+//       requestCert: false, //add when working with https sites
+//       agent: false, //add when working with https sites
+//       body: JSON.stringify(reqObject),
+//     };
+
+//     request(options, function (error, response) {
+//       console.log(error);
+//       if (error) throw new Error(error);
+//       console.log(response.body);
+//       let result = JSON.parse(response.body);
+//       resolve(result);
+//     });
+//   });
+// };
 
 function createRequestObject(title, amount) {
   let req = {

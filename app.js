@@ -68,9 +68,9 @@ app.post("/create/order", async function (req, res) {
       if (client.readyState === WebSocket.OPEN) {
         const socketResponse = {
           type: "orderResult",
-          data: JSON.parse(resultRaq),
+          data: resultRaq,
         };
-        client.send(JSON.stringify(socketResponse));
+        client.send(socketResponse);
       }
     });
 

@@ -68,14 +68,14 @@ app.post("/create/order", async function (req, res) {
       if (client.readyState === WebSocket.OPEN) {
         const socketResponse = {
           type: "orderResult",
-          data: resultRaq,
+          data: "resultRaq",
         };
         client.send(JSON.stringify(socketResponse));
       }
     });
 
     // Send the JSON response to the original HTTP request
-    res.json(resultRaq).status(200);
+    res.send(resultRaq).status(200);
   } catch (error) {
     console.error("Error creating order:", error);
     res.status(500).json({ error: "Internal Server Error" });

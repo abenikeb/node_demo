@@ -49,22 +49,32 @@ app.post("/apply/h5token", function (req, res) {
   authToken.authToken(req, res);
 });
 
-app.post("/create/order", async function (req, res) {
+app.post("/create/order", async (req, res) => {
   try {
     const resultRaq = await createOrder.createOrder(req, res);
-    // Broadcast the result to all connected WebSocket clients
-    wss.clients.forEach((client) => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify(resultRaq));
-      }
-    });
-
-    res.json({ title: req.body.amount }).status(200);
+    return res.send(resultRaq).status(200);
   } catch (error) {
     console.error("Error creating order:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+// app.post("/create/order", async function (req, res) {
+//   try {
+//     const resultRaq = await createOrder.createOrder(req, res);
+//     // Broadcast the result to all connected WebSocket clients
+//     wss.clients.forEach((client) => {
+//       if (client.readyState === WebSocket.OPEN) {
+//         client.send(JSON.stringify(resultRaq));
+//       }
+//     });
+
+//     res.json({ title: req.body.amount }).status(200);
+//   } catch (error) {
+//     console.error("Error creating order:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
 
 app.get("/test", function (req, res) {
   return res.send("this is a test message");

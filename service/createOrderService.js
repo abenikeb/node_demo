@@ -21,6 +21,7 @@ exports.createOrder = async (req, res) => {
   let rawRequest = createRawRequest(prepayId);
   console.log("RAW_REQ: ", rawRequest);
   res.send(rawRequest);
+  return rawRequest;
 };
 
 exports.requestCreateOrder = async (fabricToken, title, amount) => {

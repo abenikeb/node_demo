@@ -68,7 +68,7 @@ app.post("/create/order", async (req, res) => {
       if (client.readyState === WebSocket.OPEN) {
         const socketResponse = {
           type: "orderResult",
-          data: resultRaq,
+          data: "appid=1156087876352007&merch_code=513221&nonce_str=VSI47U57BUSQWOGA3XBULVLHPPJKSC6G&prepay_id=100111f8f04107d1d4502d82f7d40b3090d001&timestamp=1710370837&sign=MpXdakI4OI+h3YGEQ2zDTDolZCDyVcppEgOCXfB+PQPIu5VBAHUCwV0pH2Mco6xvY6mkGcWhGaUMnz5IUtjzoF+VQRXmtVuRrrROJ8cCQHdrx1QMTDjZ6MVvKyjkjAICRRi7rDPLodAvfxWByUPE/LEMJ85CQQhRp+Wahb69cEtt00GgmpN57+GjZDM9tG6Vb8cnIXWtjdWIboXz3+LYUw0gg3m0Kv/AxEsGPuDgDdNFCFTzColr6Wv/4mLafvZ042oipiaN1S4Vdv2SzaPb6MErcIpdDbtD6QIlDwvaQHv0sOt6P1E5uIXrR4jfNXQV2uqwmKABbx1+HM3+uPhcBg==&sign_type=SHA256WithRSA",
         };
         client.send(JSON.stringify(socketResponse));
       }

@@ -14,7 +14,7 @@
 
 module.exports = {
   baseUrl:
-    "ttps://superapp.ethiomobilemoney.et:38443/apiaccess/payment/gateway",
+    "https://superapp.ethiomobilemoney.et:38443/apiaccess/payment/gateway",
   fabricAppId: "3c06d57c-8c7c-4802-9320-e01492d165dd",
   appSecret: "6caa2c344e1c7eda5ff6db63878a36b2",
   merchantAppId: "1156087876352007",

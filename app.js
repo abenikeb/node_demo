@@ -31,6 +31,10 @@ app.post("/create/order", function (req, res) {
   createOrder.createOrder(req, res);
 });
 
+app.get("/test", function (req, res) {
+  return res.send("this is test message");
+});
+
 app.post("/create/mandetOrder", function (req, res) {
   createMandetOrder.createMandetOrder(req, res);
 });

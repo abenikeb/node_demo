@@ -66,7 +66,11 @@ app.post("/create/order", async function (req, res) {
     // Broadcast the result to all connected WebSocket clients
     wss.clients.forEach((client) => {
       if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify(resultRaq));
+        const socketResponse = {
+          type: "orderResult",
+          data: resultRaq,
+        };
+        client.send(JSON.stringify(socketResponse));
       }
     });
 

@@ -49,13 +49,32 @@ app.post("/apply/h5token", function (req, res) {
   authToken.authToken(req, res);
 });
 
-app.post("/create/order", async (req, res) => {
+// app.post("/create/order", async (req, res) => {
+//   try {
+//     const resultRaq = await createOrder.createOrder(req, res);
+//     return res.send(resultRaq).status(200);
+//   } catch (error) {
+//     console.error("Error creating order:", error);
+//     return res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
+
+app.post("/create/order", async function (req, res) {
   try {
     const resultRaq = await createOrder.createOrder(req, res);
+
+    // Broadcast the result to all connected WebSocket clients
+    wss.clients.forEach((client) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify(resultRaq));
+      }
+    });
+
+    // Send the JSON response to the original HTTP request
     return res.send(resultRaq).status(200);
   } catch (error) {
     console.error("Error creating order:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 

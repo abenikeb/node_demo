@@ -5,8 +5,6 @@ const config = require("../config/config");
 const https = require("http");
 var request = require("request");
 
-// Apply Creste otrder
-// Apply Creste otrder
 exports.createOrder = async (req, res) => {
   let title = req.body.title;
   let amount = req.body.amount;
@@ -49,36 +47,6 @@ exports.requestCreateOrder = async (fabricToken, title, amount) => {
     throw error; // Propagate the error for handling at a higher level
   }
 };
-
-// exports.requestCreateOrder = async (fabricToken, title, amount) => {
-//   return new Promise((resolve) => {
-//     let reqObject = createRequestObject(title, amount);
-
-//     console.log(reqObject);
-
-//     var options = {
-//       method: "POST",
-//       url: config.baseUrl + "/payment/v1/merchant/preOrder",
-//       headers: {
-//         "Content-Type": "application/json",
-//         "X-APP-Key": config.fabricAppId,
-//         Authorization: fabricToken,
-//       },
-//       rejectUnauthorized: false, //add when working with https sites
-//       requestCert: false, //add when working with https sites
-//       agent: false, //add when working with https sites
-//       body: JSON.stringify(reqObject),
-//     };
-
-//     request(options, function (error, response) {
-//       console.log(error);
-//       if (error) throw new Error(error);
-//       console.log(response.body);
-//       let result = JSON.parse(response.body);
-//       resolve(result);
-//     });
-//   });
-// };
 
 function createRequestObject(title, amount) {
   let req = {

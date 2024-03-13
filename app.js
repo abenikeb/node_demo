@@ -59,7 +59,7 @@ app.post("/apply/h5token", function (req, res) {
 //   }
 // });
 
-app.post("/create/order", async function (req, res) {
+app.post("/create/order", async (req, res) => {
   try {
     const resultRaq = await createOrder.createOrder(req, res);
 
@@ -70,12 +70,17 @@ app.post("/create/order", async function (req, res) {
           type: "orderResult",
           data: resultRaq,
         };
-        client.send(socketResponse);
+        client.send(JSON.stringify(socketResponse));
       }
     });
 
     // Send the JSON response to the original HTTP request
-    res.json(resultRaq).status(200);
+    res
+      .json({
+        type: "orderResult",
+        data: resultRaq,
+      })
+      .status(200);
   } catch (error) {
     console.error("Error creating order:", error);
     res.status(500).json({ error: "Internal Server Error" });
